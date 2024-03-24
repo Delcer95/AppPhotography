@@ -1,90 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="312dp"
-        android:layout_height="354dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="50dp"
-        android:src="@android:drawable/ic_menu_gallery"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/descripcionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginEnd="300dp"
-        android:text="Descripción:"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonfoto" />
+    <ImageView
+        android:id="@+id/foto"
+        android:layout_width="match_parent"
+        android:layout_height="286dp"
+        android:layout_marginTop="55dp"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
 
     <EditText
-        android:id="@+id/descripcionEditText"
-        android:layout_width="385dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="18dp"
-        android:hint="Insertar descripción"
-        app:layout_constraintBottom_toTopOf="@+id/botonSalvar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descripcionTextView" />
+        android:id="@+id/txtDescripcion"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Descripcion"
+        android:inputType="textMultiLine" />
+
 
     <Button
-        android:id="@+id/botonSalvar"
-        android:layout_width="229dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="70dp"
-        android:text="Salvar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descripcionEditText" />
-
-    <Button
-        android:id="@+id/buttonfoto"
-        android:layout_width="229dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="150dp"
-        android:text="Tomar Foto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <Button
-        android:id="@+id/buttonlista"
-        android:layout_width="229dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="155dp"
+        android:id="@+id/btnGuardar"
+        android:layout_width="403dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="155dp"
-        android:layout_marginBottom="16dp"
-        android:text="Ver Lista de Fotos"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonSalvar" />
+        android:backgroundTint="@color/design_default_color_error"
+        android:text="Salvar"
+        android:textColorLink="@color/design_default_color_background"
+        app:rippleColor="@color/material_dynamic_neutral100" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btnImagenes"
+        android:layout_width="404dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/design_default_color_error"
+        android:text="Lista de Fotos"
+        android:textColorLink="@color/design_default_color_background"
+        app:rippleColor="@color/material_dynamic_neutral100" />
+
+</LinearLayout>
 

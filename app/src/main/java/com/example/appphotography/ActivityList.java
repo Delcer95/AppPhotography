@@ -1,47 +1,50 @@
 package com.example.appphotography;
 
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.ListView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.example.appphotography.Config.PhotoDataSource;
 import com.example.appphotography.Config.Photograph;
+import com.example.appphotography.Config.PhotographAdapter;
+import com.example.appphotography.Config.SQLiteConexion;
+import com.example.appphotography.Config.Transacciones;
 
-import java.util.List;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.util.ArrayList;
 
 public class ActivityList extends AppCompatActivity {
-    private ListView listView;
-    private List<Photograph> photoList;
-    private PhotoDataSource dataSource;
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        listView = findViewById(R.id.listView);
+        ListView simpleGridView = (ListView) findViewById(R.id.listView);
 
-        // Inicializa la fuente de datos de las fotos
-        dataSource = new PhotoDataSource(this);
-        dataSource.open();
+        SQLiteConexion help = new SQLiteConexion(this, Transacciones.NameDataBase, null, 1);
+        ArrayList<Photograph> listaImagenes = new ArrayList<>();
+        Cursor c= help.getAll();
+        int i=0;
+        if(c.getCount()>0)
+        {
+            c.moveToFirst();
+            while(c.isAfterLast()==false)
+            {
 
-        // Cargar las fotos de la base de datos o de donde las estés obteniendo
-        photoList = dataSource.getAllPhotos(); // Suponiendo que tienes un método para obtener todas las fotos de la base de datos
+                byte[] bytes=c.getBlob(c.getColumnIndexOrThrow(Transacciones.blobPhoto));
+                String descripcion = c.getString(c.getColumnIndexOrThrow(Transacciones.descripcion));
 
-        // Configurar el adaptador para la ListView
-        PhotoCardAdapter adapter = new PhotoCardAdapter(this, photoList);
-        listView.setAdapter(adapter);
-    }
+                Photograph photograph = new Photograph(BitmapFactory.decodeByteArray(bytes, 0, bytes.length), descripcion);
+                listaImagenes.add(photograph);
+                c.moveToNext();
+                i++;
+            }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // Cerrar la fuente de datos cuando la actividad se destruya
-        dataSource.close();
+            PhotographAdapter myAdapter=new PhotographAdapter(this,R.layout.view_item,listaImagenes);
+            simpleGridView.setAdapter(myAdapter);
+        }
     }
 }

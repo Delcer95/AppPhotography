@@ -1,19 +1,21 @@
 package com.example.appphotography.Config;
 
+import android.graphics.Bitmap;
+
 public class Photograph {
-    private byte[] image;
-    private String description;
+    Bitmap imagen;
+    String descripcion;
 
-    public Photograph(byte[] image, String description) {
-        this.image = image;
-        this.description = description;
+    public Photograph(Bitmap imagen, String descripcion) {
+        this.imagen = imagen;
+        this.descripcion = descripcion;
     }
 
-    public byte[] getImage() {
-        return image;
+    public Bitmap getImagen() {
+        return imagen;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescripcion() {
+        return descripcion;
     }
 }
